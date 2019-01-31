@@ -27,17 +27,14 @@ Note that balanced_bonus behaves differently than balanced for a few inputs, e.g
 def balanced(s):
     if len(s) == 0:
         return True
-    elif len(s) % 2 == 1:
-        return False
     r = 0
     for c in s:
         if c == 'x':
             r += 1
-        elif c == 'y':
-            r -= 1
-    return r == 0
+    return len(s)/r == 2 if r > 0 else False
 
 
+assert balanced('yyyy') is False
 assert balanced("xxxyyy") is True
 assert balanced("yyyxxx") is True
 assert balanced("xxxyyyy") is False
