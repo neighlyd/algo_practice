@@ -31,6 +31,17 @@ class LinkedList:
         """
         self._length -= 1
 
+    def _node_check(self, val):
+        """
+            Checks if a given object is a Node instance or not. If not, turns the value into a Node object.
+        :param val: Any given object.
+        :return: A Node
+        """
+        if isinstance(val, Node):
+            return val
+        else:
+            return Node(val)
+
     def add(self, val):
         """
             Adds a node to the BEGINNING of the list.
@@ -38,7 +49,7 @@ class LinkedList:
         :param val: value to be added to the list.
         :return: None
         """
-        node = Node(val)
+        node = self._node_check(val)
         node.next = self.head
         self.head = node
         self._increment()
@@ -49,7 +60,7 @@ class LinkedList:
         :param val: Value to insert into node.
         :return: None
         """
-        node = Node(val)
+        node = self._node_check(val)
         if self.is_empty():
             self.head = node
         else:
@@ -82,7 +93,7 @@ class LinkedList:
         :param idx: Index location of node to be added
         :return: None
         """
-        node = Node(val)
+        node = self._node_check(val)
         curr = self.head
         prev = None
         count = 0
