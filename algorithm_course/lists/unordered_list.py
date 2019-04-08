@@ -61,12 +61,15 @@ class UnorderedList:
 
     def append(self, item):
         i_node = Node(item)
-        current = self.head
+        if not self.head:
+            self.head = i_node
+        else:
+            current = self.head
 
-        while current.next is not None:
-            current = current.next
+            while current.next is not None:
+                current = current.next
 
-        current.next = i_node
+            current.next = i_node
 
     def index(self, item):
         idx = 0
@@ -109,7 +112,7 @@ class UnorderedList:
 ul = UnorderedList()
 print(f'Starting with an empty Unordered List: {ul.is_empty()}')
 print('adding 3')
-ul.add(3)
+ul.append(3)
 print(ul.display_nodes())
 print(f'The Unordered List is no longer empty: {ul.is_empty()}')
 print('adding 2, shifting list right')
