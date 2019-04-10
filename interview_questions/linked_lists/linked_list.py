@@ -12,24 +12,9 @@ class LinkedList:
 
     def __init__(self):
         self.head = None
-        self._length = 0
 
     def is_empty(self):
         return self.head is None
-
-    def _increment(self):
-        """
-            Increments the length parameter. Allowing us to know the size of the list without traversing it in full.
-        :return: None
-        """
-        self._length += 1
-
-    def _decrement(self):
-        """
-            Decrements the length parameter. Allowing us to know the size of the list without traversing it in full.
-        :return: None
-        """
-        self._length -= 1
 
     def _node_check(self, val):
         """
@@ -45,14 +30,12 @@ class LinkedList:
     def add(self, val):
         """
             Adds a node to the BEGINNING of the list.
-            Increments the length parameter.
         :param val: value to be added to the list.
         :return: None
         """
         node = self._node_check(val)
         node.next = self.head
         self.head = node
-        self._increment()
 
     def append(self, val):
         """
@@ -68,7 +51,6 @@ class LinkedList:
             while curr.next is not None:
                 curr = curr.next
             curr.next = node
-        self._increment()
 
     def index(self, val):
         """
@@ -102,7 +84,6 @@ class LinkedList:
             count += 1
         if prev is not None:
             prev.next = node
-            self._increment()
         node.next = curr
 
     def peak(self):
@@ -121,7 +102,6 @@ class LinkedList:
 
         # Remove the .next from the penultimate node and return the last node.
         prev.next = None
-        self._decrement()
         return curr
 
     def search(self, val):
@@ -166,7 +146,6 @@ class LinkedList:
         while curr.next is not None:
             if curr.next.val == val:
                 curr.next = curr.next.next
-                self._decrement()
                 return None
             curr = curr.next
         return None
@@ -180,7 +159,7 @@ class LinkedList:
         return r
 
     def __len__(self):
-        return self._length
+        return self.size()
 
 
 def test_list():
